@@ -11,10 +11,38 @@
 
   <artifactId>moyen-spring-data</artifactId>
 
-  <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <dependencies>
+    <!-- Moyen-spring core -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>moyen-spring-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
+    <!-- PageHelper -->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper-spring-boot-starter</artifactId>
+    </dependency>
+
+    <!-- Mysql -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>META-INF/**</include>
+          <include>moyen-data.properties</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
 </project>

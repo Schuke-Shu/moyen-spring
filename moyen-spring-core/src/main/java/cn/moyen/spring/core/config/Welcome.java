@@ -1,4 +1,4 @@
-package cn.schuke.website.config;
+package cn.moyen.spring.core.config;
 
 import cn.jruyi.util.SystemProperties;
 

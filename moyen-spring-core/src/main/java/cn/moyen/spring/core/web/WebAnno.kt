@@ -1,4 +1,4 @@
-package cn.schuke.website.web
+package cn.moyen.spring.core.web
 
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter

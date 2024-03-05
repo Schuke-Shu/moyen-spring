@@ -1,4 +1,4 @@
-package cn.moyen.spring.util
+package cn.moyen.spring.core.util
 
 import cn.jruyi.util.StringUtil
 import jakarta.servlet.http.HttpServletRequest
@@ -22,12 +22,7 @@ const val LOCAL_IP4 = "127.0.0.1"
 /**
  * 获取请求来源的 ip
  */
-fun getRequestIp() = getRequestIp(getRequest())
-
-/**
- * 获取请求来源的 ip
- */
-fun getRequestIp(request: HttpServletRequest): String =
+fun getRequestIp(request: HttpServletRequest = getRequest()): String =
     with(request.getHeader("x-forwarded-for"))
     {
         if (ipNotEmpty(this))

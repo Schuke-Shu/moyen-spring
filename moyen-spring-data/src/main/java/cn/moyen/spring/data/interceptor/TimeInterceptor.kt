@@ -1,8 +1,8 @@
-package cn.moyen.spring.interceptor
+package cn.moyen.spring.data.interceptor
 
-import cn.moyen.spring.constant.REQUEST_TIME
-import cn.moyen.spring.exception.ConfigException
-import cn.moyen.spring.util.getAttribute
+import cn.moyen.spring.core.REQUEST_TIME
+import cn.moyen.spring.core.exception.ConfigException
+import cn.moyen.spring.core.util.getRequestAttribute
 import org.apache.ibatis.executor.statement.StatementHandler
 import org.apache.ibatis.mapping.BoundSql
 import org.apache.ibatis.plugin.Interceptor
@@ -118,7 +118,7 @@ class TimeInterceptor : Interceptor
                                 insert(range.first, filedNames)
 
                                 // 查找参数值位置
-                                val param = ",${getAttribute(REQUEST_TIME)}"
+                                val param = ",${getRequestAttribute(REQUEST_TIME)}"
                                 Regex("\\)")
                                     .findAll(newSql, range.last + filedNames.length)
                                     .run {
@@ -141,7 +141,7 @@ class TimeInterceptor : Interceptor
                     .run {
                         sqlStatementPatternWhere.find(sql)
                             ?.run {
-                                insert(range.first, ",$fieldModified='${getAttribute(REQUEST_TIME)}'")
+                                insert(range.first, ",$fieldModified='${getRequestAttribute(REQUEST_TIME)}'")
                                 toString()
                             }
                     }

@@ -1,4 +1,4 @@
-package cn.schuke.website.web
+package cn.moyen.spring.core.web
 
 import io.swagger.v3.oas.annotations.media.Schema
 import java.util.function.Consumer
@@ -12,6 +12,9 @@ data class ServiceCode(
     @Schema(title = "状态码信息", description = "状态码描述信息")
     val text: String
 )
+{
+    val hex: Int get() = id.toInt(16)
+}
 
 @JvmField
 internal val SERVICE_CODES: Set<ServiceCode> = LinkedHashSet()

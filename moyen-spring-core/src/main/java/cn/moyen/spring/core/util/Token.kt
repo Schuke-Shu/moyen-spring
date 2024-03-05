@@ -1,4 +1,4 @@
-package cn.moyen.spring.util
+package cn.moyen.spring.core.util
 
 import cn.jruyi.util.Assert
 import io.jsonwebtoken.Claims
@@ -21,49 +21,41 @@ const val TOKEN_ALGORITHM = "HS256"
  */
 const val TOKEN_TYPE = "JWT"
 
+
 /**
- * token 长度下限
+ * 生成 token
  */
-const val MIN_LENGTH = 105
+fun token(
+    claimsHandler: Consumer<Map<String, Any>>, expire: Long, secretKey: String,
+    algorithm: String = TOKEN_ALGORITHM, type: String = TOKEN_TYPE
+): String =
+    HashMap<String, Any>().run {
+        Assert.notBlank(secretKey, "invalid token secret-key")
+        Assert.isTrue(expire < System.currentTimeMillis(), "invalid token expire time")
+        claimsHandler.accept(this)
 
-object TokenUtil
-{
-    /**
-     * 生成 token
-     */
-    fun token(
-        claimsHandler: Consumer<Map<String, Any>>, expire: Long, secretKey: String,
-        algorithm: String = TOKEN_ALGORITHM, type: String = TOKEN_TYPE
-    ): String =
-        run {
-            Assert.notBlank(secretKey, "invalid token secret-key")
-            Assert.isTrue(expire < System.currentTimeMillis(), "invalid token expire time")
-            val claims = HashMap<String, Any>()
-            claimsHandler.accept(claims)
-
-            with(Jwts.builder())
-            {
-                setHeaderParam("alg", algorithm)
-                setHeaderParam("typ", type)
-                setClaims(claims)
-
-                setExpiration(Date.from(Instant.ofEpochMilli(expire)))
-                signWith(
-                    SignatureAlgorithm.forName(algorithm),
-                    secretKey
-                )
-
-                compact()
-            }
-        }
-
-    /**
-     * 解析token
-     */
-    fun parse(token: String, securityKey: String): Claims =
-        with(Jwts.parser())
+        with(Jwts.builder())
         {
-            setSigningKey(securityKey)
-            parseClaimsJws(token).body
+            setHeaderParam("alg", algorithm)
+            setHeaderParam("typ", type)
+            setClaims(this@run)
+
+            setExpiration(Date.from(Instant.ofEpochMilli(expire)))
+            signWith(
+                SignatureAlgorithm.forName(algorithm),
+                secretKey
+            )
+
+            compact()
         }
-}
+    }
+
+/**
+ * 解析token
+ */
+fun parseToken(token: String, securityKey: String): Claims =
+    with(Jwts.parser())
+    {
+        setSigningKey(securityKey)
+        parseClaimsJws(token).body
+    }

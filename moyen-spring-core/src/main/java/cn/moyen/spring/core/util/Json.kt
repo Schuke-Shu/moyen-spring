@@ -1,35 +1,38 @@
-package cn.moyen.spring.util
+package cn.moyen.spring.core.util
 
-import cn.moyen.spring.constant.JSON
+import com.fasterxml.jackson.annotation.JsonAutoDetect
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.PropertyAccessor
 import com.fasterxml.jackson.core.type.TypeReference
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.databind.json.JsonMapper
+
+internal val JSON =
+    JsonMapper.builder()
+        .apply {
+            visibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)
+            visibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)
+            serializationInclusion(JsonInclude.Include.NON_EMPTY)
+            disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+            disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+        }
+        .build()
 
 /**
  * 将实例转换为 json 字符串
  */
-fun toJson(mapper: ObjectMapper, arg: Any): String = mapper.writeValueAsString(arg)
-
-/**
- * 将实例转换为 json 字符串
- */
-fun toJson(arg: Any): String = JSON.writeValueAsString(arg)
+fun toJson(arg: Any, mapper: ObjectMapper = JSON): String = mapper.writeValueAsString(arg)
 
 /**
  * 将 json 字符串转换为实例
  */
-fun <T> readJson(mapper: CharSequence, type: Class<T>): T = readJson(JSON, mapper, type)
+fun <T> readJson(json: CharSequence, type: Class<T>, mapper: ObjectMapper = JSON): T =
+    mapper.readValue(json.toString(), type)
 
 /**
  * 将 json 字符串转换为实例
  */
-fun <T> readJson(mapper: ObjectMapper, json: CharSequence, type: Class<T>): T = mapper.readValue(json.toString(), type)
-
-/**
- * 将 json 字符串转换为实例
- */
-fun <T> readJson(json: CharSequence, ref: TypeReference<T>): T = JSON.readValue(json.toString(), ref)
-
-/**
- * 将 json 字符串转换为实例
- */
-fun <T> readJson(mapper: ObjectMapper, json: CharSequence, ref: TypeReference<T>): T = mapper.readValue(json.toString(), ref)
+fun <T> readJson(json: CharSequence, ref: TypeReference<T>, mapper: ObjectMapper = JSON): T =
+    mapper.readValue(json.toString(), ref)

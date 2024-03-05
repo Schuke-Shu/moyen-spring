@@ -11,10 +11,18 @@
 
   <artifactId>moyen-spring-file</artifactId>
 
-  <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <dependencies>
+    <!-- Moyen-spring core -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>moyen-spring-core</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
+    <!-- MinIO -->
+    <dependency>
+      <groupId>io.minio</groupId>
+      <artifactId>minio</artifactId>
+    </dependency>
+  </dependencies>
 </project>

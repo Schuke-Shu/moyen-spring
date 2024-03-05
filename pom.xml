@@ -4,14 +4,202 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>cn.schuke.website</groupId>
+  <parent>
+    <groupId>cn.moyen</groupId>
+    <artifactId>moyen</artifactId>
+    <version>1</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>cn.moyen.spring</groupId>
   <artifactId>moyen-spring</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
+
+  <packaging>pom</packaging>
+
+  <name>Moyen-spring Parent</name>
+  <description>Spring 二开框架</description>
+
+  <modules>
+    <module>moyen-spring-core</module>
+    <module>moyen-spring-data</module>
+    <module>test</module>
+    <module>moyen-spring-cache</module>
+    <module>moyen-spring-log</module>
+    <module>moyen-spring-security</module>
+    <module>moyen-spring-file</module>
+  </modules>
 
   <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jruyi.version>1.0</jruyi.version>
+    <lombok.version>1.18.30</lombok.version>
+
+    <spring-boot.version>3.2.3</spring-boot.version>
+
+    <fastjson.version>2.0.25</fastjson.version>
+    <jjwt.version>0.9.1</jjwt.version>
+    <junit.version>5.10.0</junit.version>
+    <knife4j.version>4.3.0</knife4j.version>
+    <logback.version>1.4.14</logback.version>
+    <minio.version>8.5.9</minio.version>
+    <mybatis.version>3.0.3</mybatis.version>
+    <mysql.version>8.0.28</mysql.version>
+    <pagehelper.version>2.0.0</pagehelper.version>
+    <google.protobuf.version>3.21.12</google.protobuf.version>
+    <swagger.version>2.2.8</swagger.version>
+    <snakeyaml.version>2.0</snakeyaml.version>
   </properties>
 
+  <dependencies>
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- Spring boot configuration processor -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- Spring test -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- Kotlin -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test</artifactId>
+      <version>${kotlin.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- JRuyi bom -->
+      <dependency>
+        <groupId>cn.jruyi</groupId>
+        <artifactId>jruyi-bom</artifactId>
+        <version>${jruyi.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- Spring boot -->
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <type>pom</type>
+        <version>${spring-boot.version}</version>
+        <scope>import</scope>
+      </dependency>
+
+      <!-- JJWT（Java json web token） -->
+      <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt</artifactId>
+        <version>${jjwt.version}</version>
+      </dependency>
+
+      <!-- Knife4j -->
+      <dependency>
+        <groupId>com.github.xiaoymin</groupId>
+        <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+        <version>${knife4j.version}</version>
+      </dependency>
+
+      <!-- Logback classic -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+
+      <!-- Logback core -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+
+      <!-- MinIO -->
+      <dependency>
+        <groupId>io.minio</groupId>
+        <artifactId>minio</artifactId>
+        <version>${minio.version}</version>
+      </dependency>
+
+      <!-- Mybatis -->
+      <dependency>
+        <groupId>org.mybatis.spring.boot</groupId>
+        <artifactId>mybatis-spring-boot-starter</artifactId>
+        <version>${mybatis.version}</version>
+      </dependency>
+
+      <!-- Mysql -->
+      <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <version>${mysql.version}</version>
+      </dependency>
+
+      <!-- PageHelper -->
+      <dependency>
+        <groupId>com.github.pagehelper</groupId>
+        <artifactId>pagehelper-spring-boot-starter</artifactId>
+        <version>${pagehelper.version}</version>
+      </dependency>
+
+      <!-- Google protobuf -->
+      <dependency>
+        <groupId>com.google.protobuf</groupId>
+        <artifactId>protobuf-java</artifactId>
+        <version>${google.protobuf.version}</version>
+      </dependency>
+
+      <!-- Snake yaml -->
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>${snakeyaml.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <configuration>
+          <args>
+            <arg>-Xjsr305=strict</arg>
+          </args>
+          <compilerPlugins>
+            <plugin>spring</plugin>
+          </compilerPlugins>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+    </plugins>
+  </build>
 </project>

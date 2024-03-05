@@ -12,10 +12,77 @@
   <groupId>org.example</groupId>
   <artifactId>test</artifactId>
 
-  <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <name>moyen-test</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>moyen-spring-cache</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>moyen-spring-file</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>moyen-spring-log</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>${parent.groupId}</groupId>
+      <artifactId>moyen-spring-security</artifactId>
+      <version>${parent.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>META-INF/**</include>
+          <include>mapper/*Mapper.xml</include>
+          <include>application.yml</include>
+          <include>application-${env}.yml</include>
+          <include>banner.txt</include>
+        </includes>
+      </resource>
+    </resources>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>local</id>
+      <properties>
+        <env>local</env>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>dev</id>
+      <properties>
+        <env>dev</env>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>test</id>
+      <properties>
+        <env>test</env>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>prod</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+  </profiles>
 </project>

@@ -1,4 +1,1 @@
-cn.moyen.spring.core.config.CacheConfig
-cn.moyen.spring.core.config.CoreConfig
-cn.moyen.spring.core.exception.GlobalExceptionHandler
-cn.moyen.spring.core.web.AutoResultPacker
+cn.moyen.spring.cache.CacheConfig

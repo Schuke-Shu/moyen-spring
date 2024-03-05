@@ -3,37 +3,19 @@ spring:
     active: ${env}
   application:
     name: ${project.name}
-  mvc:
-    servlet:
-      load-on-startup: 1
-    pathmatch:
-      matching-strategy: ant_path_matcher
-  threads:
-    virtual:
-      enabled: on
 
 logging:
-  level:
-    org.springframework.security.web.DefaultSecurityFilterChain: warn
   pattern:
     console: "%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(%5p) %clr(${PID:}){magenta} - %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
     file: "%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID} - [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
 
-mybatis:
-  mapper-locations: classpath*:mapper/*Mapper.xml
-  configuration:
-    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
-    cache-enabled: on
-    use-generated-keys: on
-
-knife4j:
-  enable: true
-
 springdoc:
   group-configs:
-    - group: personal-website
-      display-name: 个人站
+    - group: test
+      display-name: 测试
       packages-to-scan:
-        - cn.schuke.website.controller
-        - cn.schuke.website.pojo
-        - cn.schuke.website.web
+        - org.example.test
+    - group: test2
+      display-name: 测试2
+      packages-to-scan:
+        - org.example.test

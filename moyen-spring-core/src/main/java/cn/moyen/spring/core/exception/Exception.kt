@@ -1,7 +1,7 @@
-package cn.schuke.website.exception
+package cn.moyen.spring.core.exception
 
-import cn.schuke.website.web.ERR_UNKNOWN
-import cn.schuke.website.web.ServiceCode
+import cn.moyen.spring.core.web.ERR_UNKNOWN
+import cn.moyen.spring.core.web.ServiceCode
 
 // Date: 2024-02-27 13:55
 
@@ -20,3 +20,5 @@ open class SystemException : RuntimeException
         writableStackTrace
     )
 }
+
+class ConfigException(message: String) : SystemException(message)

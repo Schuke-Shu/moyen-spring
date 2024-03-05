@@ -1,13 +1,57 @@
-package cn.moyen.spring.core.util
+package cn.moyen.spring.data
 
-import cn.moyen.spring.core.PageParams
 import com.github.pagehelper.Page
 import com.github.pagehelper.PageHelper
 import com.github.pagehelper.PageInfo
+import io.swagger.v3.oas.annotations.media.Schema
 import org.slf4j.LoggerFactory
 
 // 分页工具
 // Date: 2024-02-29 19:29
+
+/**
+ * 分页数据类
+ */
+interface Pagination
+{
+    /**
+     * 当前所在页数
+     */
+    var pageNum: Int?
+
+    /**
+     * 每页元素数
+     */
+    var pageSize: Int?
+
+    /**
+     * 导航数字数量
+     */
+    var navNum: Int?
+
+    /**
+     * 排序字段名称
+     */
+    var orderBy: String?
+}
+
+/**
+ * 分页数据抽象类
+ */
+abstract class BasePagination : Pagination
+{
+    @Schema(description = "当前所在页数")
+    override var pageNum: Int? = null
+
+    @Schema(description = "每页元素数")
+    override var pageSize: Int? = null
+
+    @Schema(description = "导航数字数量")
+    override var navNum: Int? = null
+
+    @Schema(description = "排序字段名称")
+    override var orderBy: String? = null
+}
 
 private val log = LoggerFactory.getLogger("cn.schuke.website.util.PageUtil")
 
@@ -17,7 +61,7 @@ const val ONE_PER_PAGE = 1
 /**
  * 快速分页
  */
-fun <E, P : PageParams> pagination(page: P, selector: (PageParams) -> Unit, pageSetter: (Page<E>) -> Unit = { _ -> }) =
+fun <E, P : Pagination> pagination(page: P, selector: (Pagination) -> Unit, pageSetter: (Page<E>) -> Unit = { _ -> }) =
     startPage(page.pageNum, page.pageSize, pageSetter).run {
         val ob = page.orderBy
         if (ob !== null && ob.isNotBlank()) this.setOrderBy<E>(ob)

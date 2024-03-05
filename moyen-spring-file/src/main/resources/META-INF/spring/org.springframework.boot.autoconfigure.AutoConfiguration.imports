@@ -1,3 +1,2 @@
-cn.moyen.spring.core.config.CoreConfig
-cn.moyen.spring.core.exception.GlobalExceptionHandler
-cn.moyen.spring.core.web.AutoResultPacker
+cn.moyen.spring.file.FIleConfig
+cn.moyen.spring.file.MinioFileServiceImpl

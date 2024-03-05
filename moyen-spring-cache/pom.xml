@@ -11,10 +11,17 @@
 
   <artifactId>moyen-spring-cache</artifactId>
 
-  <properties>
-    <maven.compiler.source>21</maven.compiler.source>
-    <maven.compiler.target>21</maven.compiler.target>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <dependencies>
+    <!-- Moyen-spring data -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>moyen-spring-data</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+  </dependencies>
 </project>

@@ -1,9 +1,9 @@
-package cn.schuke.website.filter
+package cn.moyen.spring.core.filter
 
-import cn.schuke.website.DEFAULT_DATETIME_FORMATTER
-import cn.schuke.website.REQUEST_TIME
-import cn.schuke.website.util.getRequestIp
-import cn.schuke.website.util.logger
+import cn.moyen.spring.core.DEFAULT_DATETIME_FORMATTER
+import cn.moyen.spring.core.REQUEST_TIME
+import cn.moyen.spring.core.util.getRequestIp
+import cn.moyen.spring.core.util.logger
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
@@ -37,13 +37,13 @@ class RequestEntryFilter : OncePerRequestFilter(), PriorityOrdered
                     if (isDebugEnabled)
                         debug(
                             """
-                        
-                        accept [${req.method}] request:
-                                  IP: ${getRequestIp(req)}
-                                 URI: ${req.requestURI}
-                                Time: ${LocalDateTime.now().format(DEFAULT_DATETIME_FORMATTER)}
-                        Content Type: ${req.contentType}
-                    """.trimIndent()
+
+                                Accept [${req.method}] request:
+                                          IP: ${getRequestIp(req)}
+                                         URI: ${req.requestURI}
+                                        Time: ${LocalDateTime.now().format(DEFAULT_DATETIME_FORMATTER)}
+                                Content Type: ${req.contentType}
+                            """.trimIndent()
                         )
 
                     req.setAttribute(REQUEST_TIME, now)

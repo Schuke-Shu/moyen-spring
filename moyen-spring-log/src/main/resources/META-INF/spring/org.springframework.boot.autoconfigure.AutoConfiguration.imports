@@ -1,3 +1,2 @@
-cn.moyen.spring.core.config.CoreConfig
-cn.moyen.spring.core.exception.GlobalExceptionHandler
-cn.moyen.spring.core.web.AutoResultPacker
+cn.moyen.spring.log.LogConfig
+cn.moyen.spring.log.LogAspect

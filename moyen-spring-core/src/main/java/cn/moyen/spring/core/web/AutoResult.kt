@@ -1,7 +1,7 @@
-package cn.schuke.website.web
+package cn.moyen.spring.core.web
 
-import cn.schuke.website.util.logger
-import cn.schuke.website.util.toJson
+import cn.moyen.spring.core.util.logger
+import cn.moyen.spring.core.util.toJson
 import org.springframework.core.MethodParameter
 import org.springframework.http.MediaType
 import org.springframework.http.converter.HttpMessageConverter

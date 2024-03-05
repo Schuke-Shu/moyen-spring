@@ -1,6 +1,6 @@
-package cn.schuke.website.web
+package cn.moyen.spring.core.web
 
-import cn.schuke.website.exception.ServiceException
+import cn.moyen.spring.core.exception.ServiceException
 import io.swagger.v3.oas.annotations.media.Schema
 
 // Date: 2024-02-27 14:34
@@ -18,26 +18,24 @@ data class R<D>(
 /**
  * 业务处理成功，无返回数据
  */
-fun ok(): R<*> = R(OK.id, null, null)
+fun ok() = R(OK.id, null, null)
 
 /**
  * 业务处理成功，有返回数据
  */
-fun <D> ok(data: D): R<D> =
-    R<D>(OK.id, data, null)
+fun <D> ok(data: D) = R(OK.id, data, null)
 
 /**
  * 业务处理失败
  */
-fun fail(code: String, msg: String): R<*> =
-    R(code, null, msg)
+fun fail(code: String, msg: String) = R(code, null, msg)
 
 /**
  * 业务处理失败
  */
-fun fail(code: ServiceCode): R<*> = fail(code.id, code.text)
+fun fail(code: ServiceCode) = fail(code.id, code.text)
 
 /**
  * 业务处理失败
  */
-fun fail(se: ServiceException): R<*> = fail(se.code)
+fun fail(se: ServiceException) = fail(se.code)

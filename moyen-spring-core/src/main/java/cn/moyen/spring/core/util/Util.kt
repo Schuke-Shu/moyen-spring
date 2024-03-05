@@ -2,20 +2,11 @@ package cn.moyen.spring.core.util
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.boot.runApplication
 import java.io.PrintWriter
 import java.io.StringWriter
 
 // 通用工具
 // Date: 2024-02-27 10:47
-
-/**
- * 启动应用
- */
-inline fun <reified T: Any> boot(vararg args: String)
-{
-    runApplication<T>(*args)
-}
 
 /**
  * 获取日志对象

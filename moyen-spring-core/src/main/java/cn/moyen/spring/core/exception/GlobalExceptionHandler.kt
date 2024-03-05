@@ -1,8 +1,8 @@
-package cn.schuke.website.exception
+package cn.moyen.spring.core.exception
 
-import cn.schuke.website.util.logTraceInfo
-import cn.schuke.website.util.logger
-import cn.schuke.website.web.*
+import cn.moyen.spring.core.util.logTraceInfo
+import cn.moyen.spring.core.util.logger
+import cn.moyen.spring.core.web.*
 import jakarta.validation.ConstraintViolationException
 import org.springframework.validation.BindException
 import org.springframework.web.bind.MethodArgumentNotValidException

@@ -1,16 +1,4 @@
-Spring Boot Version: ${spring-boot.version}
-Spring Application Name: ${spring.application.name}
-${AnsiColor.BLUE}${AnsiStyle.BOLD}
-,--------.              ,--.
-'--.  .--',---.  ,---.,-'  '-.
-   |  |  | .-. :(  .-''-.  .-'
-   |  |  \   --..-'  `) |  |
-   `--'   `----'`----'  `--'
-
-:: ${spring.application.name} ::
-(v${project.version})
-${AnsiColor.BRIGHT_YELLOW}
-//                           _ooOoo_                            //
+${AnsiColor.BRIGHT_YELLOW}//                           _ooOoo_                            //
 //                          o8888888o                           //
 //                          88" . "88                           //
 //                          (| ^_^ |)                           //
@@ -33,4 +21,16 @@ ${AnsiColor.BRIGHT_YELLOW}
              永不宕机     需求不改     永无BUG    上线顺利
              身体健康     头发永驻     告别单身    升职加薪${AnsiColor.BRIGHT_YELLOW}
 //                                                              //
+${AnsiColor.BRIGHT_WHITE}
+Spring Boot Version: ${spring-boot.version}
+Spring Application Name: ${spring.application.name}
+${AnsiColor.BLUE}${AnsiStyle.BOLD}
+,--------.              ,--.
+'--.  .--',---.  ,---.,-'  '-.
+   |  |  | .-. :(  .-''-.  .-'
+   |  |  \   --..-'  `) |  |
+   `--'   `----'`----'  `--'
+
+:: ${spring.application.name} ::
+(v${project.version})
 ${AnsiColor.BRIGHT_WHITE}

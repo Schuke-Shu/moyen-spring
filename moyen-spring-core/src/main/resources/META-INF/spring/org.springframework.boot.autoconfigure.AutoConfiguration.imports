@@ -1,5 +1,3 @@
-cn.moyen.spring.config.CoreConfig
-cn.moyen.spring.config.DataConfig
-cn.moyen.spring.exception.GlobalExceptionHandler
-cn.moyen.spring.web.AutoResultPacker
-cn.moyen.spring.MoyenProperties
+cn.moyen.spring.core.config.CoreConfig
+cn.moyen.spring.core.exception.GlobalExceptionHandler
+cn.moyen.spring.core.web.AutoResultPacker
